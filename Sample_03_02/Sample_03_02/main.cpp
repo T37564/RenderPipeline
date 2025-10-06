@@ -25,19 +25,59 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     ConstantBuffer cb;
 
     cb.Init(sizeof(Matrix));
+   
+
     // 三角形ポリゴンを定義
     TrianglePolygon triangle;
     triangle.Init(rootSignature);
+    TrianglePolygon triangle2;
+    triangle2.Init(rootSignature);
+
+    //無理やり改造して　頂点を指定できる形に変更
+	triangle.InitVertexBuffer(-0.5f, -0.5f, 0.0f, -0.5f, 0.5f, 0.0f, 0.5f, 0.5f, 0.0f);
+	triangle2.InitVertexBuffer(-0.5f, -0.5f, 0.0f, 0.5f, 0.5f, 0.0f, 0.5f, -0.5f, 0.0f);
 
     // step-1 三角形ポリゴンにUV座標を設定
+	//SetUVCoord(頂点番号, U座標, V座標)    
+	/*triangle.SetUVCoord(0, 0.0f, 1.0f);
+
+	triangle.SetUVCoord(1, 0.5f, 0.0f);
+
+	triangle.SetUVCoord(2, 1.0f, 1.0f);*/
+
+    ////左右反転ver
+   /* triangle.SetUVCoord(0, 0.0f, 1.0f);
+
+    triangle.SetUVCoord(1, -0.5f, 0.0f);
+
+    triangle.SetUVCoord(2, -1.0f, 1.0f);*/
+
+
+	//四角形ver　テクスチャの座標を四角形に合わせる
+    triangle.SetUVCoord(0, 0.0f, 1.0f);
+    triangle.SetUVCoord(1, 0.5f, 0.0f);
+    triangle.SetUVCoord(2, 1.0f, 1.0f);
+
+    triangle.SetUVCoord(0, 0.0f, 1.0f);
+    triangle.SetUVCoord(1, 0.5f, 0.0f);
+    triangle.SetUVCoord(2, 1.0f, 1.0f);
+   
+
+
 
     // step-2 テクスチャをロード
+	Texture tex;
+	tex.InitFromDDSFile(L"Assets/image/sample_00.dds");
 
     // ディスクリプタヒープを作成
     DescriptorHeap ds;
     ds.RegistConstantBuffer(0, cb); // ディスクリプタヒープに定数バッファを登録
 
     // step-3 テクスチャをディスクリプタヒープに登録
+    //RegistShaderResource(レジスタ番号,レジスタに設定するテクスチャ); 
+	ds.RegistShaderResource(0, tex); 
+
+
 
     ds.Commit();                    //ディスクリプタヒープへの登録を確定
 
@@ -70,6 +110,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
         //三角形をドロー
         triangle.Draw(renderContext);
+        triangle2.Draw(renderContext);
 
         /// //////////////////////////////////////
         //絵を描くコードを書くのはここまで！！！

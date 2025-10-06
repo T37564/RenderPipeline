@@ -7,8 +7,6 @@ void TrianglePolygon::Init(RootSignature& rs)
 	LoadShaders();
 	//パイプラインステートを作成。
 	InitPipelineState(rs);
-	//頂点バッファを作成。
-	InitVertexBuffer();
 	//インデックスバッファを作成。
 	InitIndexBuffer();
 }
@@ -62,20 +60,42 @@ void TrianglePolygon::InitPipelineState(RootSignature& rs)
 	psoDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
 	m_pipelineState.Init(psoDesc);
 }
-void TrianglePolygon::InitVertexBuffer()
+//void TrianglePolygon::InitVertexBuffer()
+//{
+//	m_vertices[0] = {
+//			{-0.5f, -0.5f, 0.0f},
+//			{ 1.0f, 0.0f, 0.0f },
+//			{ 0.0f, 0.0f }
+//	};
+//	m_vertices[1] = {
+//			{ 0.0f, 0.5f, 0.0f },
+//			{ 0.0f, 1.0f, 0.0f },
+//			{ 0.5f, 1.0f }
+//	};
+//	m_vertices[2] = {
+//			{ 0.5f, -0.5f, 0.0f },
+//			{ 0.0f, 0.0f, 1.0f },
+//			{1.0f, 0.0f}
+//	};
+//
+//	m_vertexBuffer.Init(sizeof(m_vertices), sizeof(m_vertices[0]));
+//	m_vertexBuffer.Copy(m_vertices);
+//}
+//勝手に改造
+void TrianglePolygon::InitVertexBuffer(float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2)
 {
 	m_vertices[0] = {
-			{-0.5f, -0.5f, 0.0f},
+			{x0,y0,z0},
 			{ 1.0f, 0.0f, 0.0f },
 			{ 0.0f, 0.0f }
 	};
 	m_vertices[1] = {
-			{ 0.0f, 0.5f, 0.0f },
+			{ x1,y1,z1 },
 			{ 0.0f, 1.0f, 0.0f },
 			{ 0.5f, 1.0f }
 	};
 	m_vertices[2] = {
-			{ 0.5f, -0.5f, 0.0f },
+			{ x2,y2,z2 },
 			{ 0.0f, 0.0f, 1.0f },
 			{1.0f, 0.0f}
 	};
@@ -83,7 +103,6 @@ void TrianglePolygon::InitVertexBuffer()
 	m_vertexBuffer.Init(sizeof(m_vertices), sizeof(m_vertices[0]));
 	m_vertexBuffer.Copy(m_vertices);
 }
-
 void TrianglePolygon::SetUVCoord(int vertNo, float U, float V)
 {
 	m_vertices[vertNo].uv[0] = U;
@@ -95,7 +114,7 @@ void TrianglePolygon::InitIndexBuffer()
 	unsigned short indices[] = {
 		0,1,2
 	};
-	
+
 	m_indexBuffer.Init(sizeof(indices), 2);
 	m_indexBuffer.Copy(static_cast<uint16_t*>(indices));
 

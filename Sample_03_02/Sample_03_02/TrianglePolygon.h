@@ -32,6 +32,10 @@ public:
 	/// <param name="U">U座標</param>
 	/// <param name="V">V座標</param>
 	void SetUVCoord(int vertNo, float U, float V);
+	/// <summary>
+	/// 頂点バッファを作成。
+	/// </summary>
+	void InitVertexBuffer(float x0,float y0,float z0,float x1, float y1, float z1,float x2, float y2, float z2 );
 private:
 	/// <summary>
 	/// パイプラインステートを初期化。
@@ -42,10 +46,10 @@ private:
 	/// シェーダーをロード。
 	/// </summary>
 	void LoadShaders();
-	/// <summary>
+	/*/// <summary>
 	/// 頂点バッファを作成。
 	/// </summary>
-	void InitVertexBuffer();
+	void InitVertexBuffer();*/
 	/// <summary>
 	/// インデックスバッファを作成。
 	/// </summary>
