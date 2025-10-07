@@ -191,7 +191,19 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 			//29
 			{0.5f,0.7f,0.0f},//右上
 			{1.0f,1.0f,1.0f }//白
+		},
+		{
+			//30
+			{0.3f,-0.8f,0.0f},//頂点
+			{0.0f,0.0f,1.0f }//青色
+		},
+		{
+			//31
+			{-0.3f,-0.8f,0.0f},//頂点
+			{0.0f,0.0f,1.0f }//青色
 		}
+
+
 	};
 
 	VertexBuffer triangleVB;
@@ -207,14 +219,17 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//三角形の作成(上＝白、右＝赤、左＝青)
 		//0,3,5//三角形１
 
+		//二等辺三角形の作成
+		4,30,31
+
 		////四角形の作成
 		//0,1,2,//三角形１
 		//0,2,3//三角形２
 
 		////五角形の作成
-		0,1,2,//三角形１
-		0,2,3,//三角形２
-		1,2,4//三角形３
+		//0,1,2,//三角形１
+		//0,2,3,//三角形２
+		//1,2,4//三角形３
 
 		//しま模様
 		//6,7,8,//三角形１

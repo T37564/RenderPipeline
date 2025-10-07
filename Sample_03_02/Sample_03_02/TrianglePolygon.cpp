@@ -60,29 +60,29 @@ void TrianglePolygon::InitPipelineState(RootSignature& rs)
 	psoDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
 	m_pipelineState.Init(psoDesc);
 }
-//void TrianglePolygon::InitVertexBuffer()
-//{
-//	m_vertices[0] = {
-//			{-0.5f, -0.5f, 0.0f},
-//			{ 1.0f, 0.0f, 0.0f },
-//			{ 0.0f, 0.0f }
-//	};
-//	m_vertices[1] = {
-//			{ 0.0f, 0.5f, 0.0f },
-//			{ 0.0f, 1.0f, 0.0f },
-//			{ 0.5f, 1.0f }
-//	};
-//	m_vertices[2] = {
-//			{ 0.5f, -0.5f, 0.0f },
-//			{ 0.0f, 0.0f, 1.0f },
-//			{1.0f, 0.0f}
-//	};
-//
-//	m_vertexBuffer.Init(sizeof(m_vertices), sizeof(m_vertices[0]));
-//	m_vertexBuffer.Copy(m_vertices);
-//}
+void TrianglePolygon::InitVertexBuffer()
+{
+	m_vertices[0] = {
+			{-0.5f, -0.5f, 0.0f},
+			{ 1.0f, 0.0f, 0.0f },
+			{ 0.0f, 0.0f }
+	};
+	m_vertices[1] = {
+			{ 0.0f, 0.5f, 0.0f },
+			{ 0.0f, 1.0f, 0.0f },
+			{ 0.5f, 1.0f }
+	};
+	m_vertices[2] = {
+			{ 0.5f, -0.5f, 0.0f },
+			{ 0.0f, 0.0f, 1.0f },
+			{1.0f, 0.0f}
+	};
+
+	m_vertexBuffer.Init(sizeof(m_vertices), sizeof(m_vertices[0]));
+	m_vertexBuffer.Copy(m_vertices);
+}
 //勝手に改造
-void TrianglePolygon::InitVertexBuffer(float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2)
+void TrianglePolygon::InitVertexBuffer_Square(float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2)
 {
 	m_vertices[0] = {
 			{x0,y0,z0},

@@ -30,20 +30,21 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     // 三角形ポリゴンを定義
     TrianglePolygon triangle;
     triangle.Init(rootSignature);
-    TrianglePolygon triangle2;
-    triangle2.Init(rootSignature);
 
-    //無理やり改造して　頂点を指定できる形に変更
-	triangle.InitVertexBuffer(-0.5f, -0.5f, 0.0f, -0.5f, 0.5f, 0.0f, 0.5f, 0.5f, 0.0f);
-	triangle2.InitVertexBuffer(-0.5f, -0.5f, 0.0f, 0.5f, 0.5f, 0.0f, 0.5f, -0.5f, 0.0f);
+ //   TrianglePolygon triangle2;
+ //   triangle2.Init(rootSignature);
+
+ //   //無理やり改造して　頂点を指定できる形に変更
+	//triangle.InitVertexBuffer_Square(-0.5f, -0.5f, 0.0f, -0.5f, 0.5f, 0.0f, 0.5f, 0.5f, 0.0f);
+	//triangle2.InitVertexBuffer_Square(-0.5f, -0.5f, 0.0f, 0.5f, 0.5f, 0.0f, 0.5f, -0.5f, 0.0f);
 
     // step-1 三角形ポリゴンにUV座標を設定
 	//SetUVCoord(頂点番号, U座標, V座標)    
-	/*triangle.SetUVCoord(0, 0.0f, 1.0f);
+	triangle.SetUVCoord(0, 0.0f, 1.0f);
 
 	triangle.SetUVCoord(1, 0.5f, 0.0f);
 
-	triangle.SetUVCoord(2, 1.0f, 1.0f);*/
+	triangle.SetUVCoord(2, 1.0f, 1.0f);
 
     ////左右反転ver
    /* triangle.SetUVCoord(0, 0.0f, 1.0f);
@@ -53,15 +54,16 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
     triangle.SetUVCoord(2, -1.0f, 1.0f);*/
 
 
-	//四角形ver　テクスチャの座標を四角形に合わせる
-    triangle.SetUVCoord(0, 0.0f, 1.0f);
-    triangle.SetUVCoord(1, 0.5f, 0.0f);
-    triangle.SetUVCoord(2, 1.0f, 1.0f);
+	////四角形ver　テクスチャの座標を四角形に合わせる
+ //  // 1つ目の三角形
+ //   triangle.SetUVCoord(0, 0.0f, 0.0f);
+ //   triangle.SetUVCoord(1, 0.0f, 1.0f);
+ //   triangle.SetUVCoord(2, 1.0f, 0.0f);
 
-    triangle.SetUVCoord(0, 0.0f, 1.0f);
-    triangle.SetUVCoord(1, 0.5f, 0.0f);
-    triangle.SetUVCoord(2, 1.0f, 1.0f);
-   
+ //   // 2つ目の三角形
+ //   triangle2.SetUVCoord(0, 0.0f, 1.0f);
+ //   triangle2.SetUVCoord(1, 1.0f, 1.0f);
+ //   triangle2.SetUVCoord(2, 1.0f, 0.0f);
 
 
 
@@ -110,7 +112,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
         //三角形をドロー
         triangle.Draw(renderContext);
-        triangle2.Draw(renderContext);
+
+       // triangle2.Draw(renderContext);
 
         /// //////////////////////////////////////
         //絵を描くコードを書くのはここまで！！！
