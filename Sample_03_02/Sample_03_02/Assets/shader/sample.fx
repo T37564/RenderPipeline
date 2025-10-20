@@ -25,7 +25,7 @@ Texture2D g_texture : register(t0);
 // 2. 戻り値は変換後の頂点情報
 VSOutput VSMain(VSInput In)
 {
-    VSOutput vsOut = (VSOutput)0;
+    VSOutput vsOut = (VSOutput) 0;
     vsOut.pos = mul(g_worldMatrix, In.pos);
     vsOut.uv = In.uv;
     vsOut.color = In.color; //
@@ -38,9 +38,13 @@ float4 PSMain(VSOutput vsOut) : SV_Target0
     // step-5 テクスチャカラーをサンプリングして返す
     //Sample(サンプラー,UV座標);
     float4 texColor = g_texture.Sample(g_sampler, vsOut.uv);
-    return texColor;
     
-    //ここで色変えれるらしい
+    //教科書通りにしたいときは、以下をコメントアウト解除
+    //return texColor;
     
-    //return float4(vsOut.color, 1.0f);
+    // 頂点カラーをfloat4に変換 (alphaは1.0f)
+    float4 vertColor = float4(vsOut.color, 1.0f);
+
+    // 合成（乗算）
+    return float4(texColor * vertColor);
 }

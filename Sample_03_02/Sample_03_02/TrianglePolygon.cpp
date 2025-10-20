@@ -7,6 +7,8 @@ void TrianglePolygon::Init(RootSignature& rs)
 	LoadShaders();
 	//パイプラインステートを作成。
 	InitPipelineState(rs);
+	//頂点バッファを作成。( 四角形にするときはコメントアウトすること)
+	InitVertexBuffer(); 
 	//インデックスバッファを作成。
 	InitIndexBuffer();
 }
