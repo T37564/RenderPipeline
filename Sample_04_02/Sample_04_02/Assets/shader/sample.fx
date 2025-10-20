@@ -61,7 +61,7 @@ SPSIn VSMain(SVSIn vsIn, uniform bool hasSkin)
     psIn.pos = mul(mProj, psIn.pos); // カメラ座標系からスクリーン座標系に変換
 
     // step-6 頂点法線をピクセルシェーダーに渡す
-    //法線を回転させる
+    // 法線を回転させる
     psIn.normal = mul(mWorld, vsIn.normal);
 
     psIn.uv = vsIn.uv;
@@ -77,7 +77,7 @@ float4 PSMain(SPSIn psIn) : SV_Target0
     // step-7 ピクセルの法線とライトの方向の内積を計算する
     float t = dot(psIn.normal, ligDirection);
     
-    //ない席の結果に-1を乗算する
+    // 内積の結果に-1を乗算する
     t *= -1.0f;
 
     // step-8 内積の結果が0以下なら0にする
